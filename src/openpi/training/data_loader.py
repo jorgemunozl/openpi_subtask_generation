@@ -6,20 +6,10 @@ import typing
 from typing import Literal, Protocol, SupportsIndex, TypeVar
 from pathlib import Path
 from omegaconf import OmegaConf
-from x2robot_dataset.lazy_dataset import (
-    IterChunkDataset,
-    X2RDataChunkConfig,
-    X2RDataProcessingConfig,
-)
-from x2robot_dataset.common.data_preprocessing import _CAM_MAPPING
-from x2robot_dataset.dataloader import DynamicDataLoader
-from x2robot_dataset.common.collate_fn import collate_wrapper
-from x2robot_dataset.dynamic_robot_dataset import DynamicRobotDataset
-from x2robot_dataset.common.constants import ACTION_KEY_RANGES
 
 import jax
 import jax.numpy as jnp
-# import lerobot.common.datasets.lerobot_dataset as lerobot_dataset
+import lerobot.common.datasets.lerobot_dataset as lerobot_dataset
 import numpy as np
 import torch
 import logging
@@ -150,7 +140,7 @@ def create_torch_dataset(
     if repo_id == "fake":
         return FakeDataset(model_config, num_samples=1024)
 
-    dataset_meta = lerobot_dataset.LeRobotDatasetMetadata(repo_id, local_files_only=True)
+    dataset_meta = lerobot_dataset.LeRobotDatasetMetadata(repo_id)
     dataset = lerobot_dataset.LeRobotDataset(
         data_config.repo_id,
         delta_timestamps={

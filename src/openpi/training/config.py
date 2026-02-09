@@ -685,7 +685,7 @@ _CONFIGS = [
         name="right_pi05_20",
         exp_name="debug_test",
         model=pi05_config.Pi05Config(action_horizon=20, pi05=True, max_token_len=50),
-        weight_loader=weight_loaders.CheckpointWeightLoader("/x2robot_v2/xinyuanfang/projects_v2/.cache/openpi/openpi-assets/checkpoints/pi05_base/params"),
+        weight_loader=weight_loaders.CheckpointWeightLoader("gs://openpi-assets/checkpoints/pi05_base/params"),
         data=LeRobotX2robotDataConfig(
             repo_id="pi0_distribute_package",
             base_config=DataConfig(
@@ -708,7 +708,7 @@ _CONFIGS = [
         name="right_pi05_20_move",
         exp_name="debug_test",
         model=pi05_config.Pi05Config(action_horizon=20, pi05=True, max_token_len=50),
-        weight_loader=weight_loaders.CheckpointWeightLoader("/x2robot_v2/xinyuanfang/projects_v2/.cache/openpi/openpi-assets/checkpoints/pi05_base/params"),
+        weight_loader=weight_loaders.CheckpointWeightLoader("/home/lperez/.cache/openpi/openpi-assets/checkpoints/pi05_base/params"),
         data=LeRobotX2robotMoveDataConfig(
             repo_id="pi0_distribute_package",
             base_config=DataConfig(
@@ -862,7 +862,7 @@ _CONFIGS = [
             decay_lr=2.5e-6,
         ),
         # Below you can define other hyperparameters like the learning rate, number of training steps, etc.
-        # Check the base TrainConfig class for a full list of available hyperparameters.
+        # Check the base TrainConfig class for a full list of available h_yperparameters.
         num_train_steps=30_000,
     ),
     TrainConfig(
